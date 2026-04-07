@@ -3,21 +3,33 @@ plugins {
     id 'application'
 }
 
-mainClassName = 'org.htw.prog2.aufgabe0.MyProject'
-
-group 'org.example'
-version '1.0-SNAPSHOT'
-
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+//    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+//    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
     implementation 'org.knowm.xchart:xchart:3.8.0'
 }
 
-test {
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+application {
+    mainClass = 'org.htw.prog2.aufgabe0.MyProject'
+}
+
+//group 'org.example'
+//version '1.0-SNAPSHOT'
+
+tasks.named('test') {
     useJUnitPlatform()
 }

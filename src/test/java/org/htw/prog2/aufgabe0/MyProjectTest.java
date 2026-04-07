@@ -20,10 +20,9 @@ class MyProjectTest {
      * <ol/>
      */
     @Test
-    void calculateBabylonianRoot() {
-        Random r = new Random();
-        // Tests for point 1
-        for(int numtest = 0; numtest < 10; numtest++) {
+    void calculateBabylonianRoot_maxerror() {
+        Random r = new Random(123);
+        for (int numtest = 0; numtest < 10; numtest++) {
             double value = r.nextInt(100000);
             // Ensure that maxerror is at least minmaxerror.
             double maxerror = r.nextDouble();
@@ -31,22 +30,37 @@ class MyProjectTest {
             double expected = Math.sqrt(value);
             assertTrue(Math.abs(result[result.length - 1] - expected) <= maxerror,
                     "Wrong root with value = " + value + " and maxerror = " + maxerror +
-                    ": Expected: " + expected + " but got: " + result[result.length-1]);
+                            ": Expected: " + expected + " but got: " + result[result.length - 1]);
         }
+    }
+
+    @Test
+    void calculateBabylonianRoot_zero() {
+        Random r = new Random(123);
         // Tests for point 2
         double[] res = MyProject.calculateBabylonianRoot(0, 5, 0.0001);
-        assertTrue(res[res.length-1] == 0, "Root of 0 should be 0, got: "
-                + res[res.length-1]);
+        assertTrue(res[res.length - 1] == 0, "Root of 0 should be 0, got: "
+                + res[res.length - 1]);
+    }
+
+    @Test
+    void calculateBabylonianRoot_negative() {
+        Random r = new Random(123);
         // Tests for point 3
-        for(int numtest = 0; numtest < 10; numtest++) {
-            double value = -1*r.nextInt(100000);
+        for (int numtest = 0; numtest < 10; numtest++) {
+            double value = -1 * r.nextInt(100000);
             double maxerror = r.nextDouble();
             double[] result = MyProject.calculateBabylonianRoot(value, 5, maxerror);
             double expected = Math.sqrt(value);
             assertTrue(Math.abs(result[result.length - 1]) == 0,
                     "Root of negative value = " + value + " should be 0, got: "
-                            + result[result.length-1]);
+                            + result[result.length - 1]);
         }
+    }
+
+    @Test
+    void calculateBabylonianRoot_time() {
+        Random r = new Random(123);
         // Tests for point 4
         for(int numtest = 0; numtest < 10; numtest++) {
             double value = r.nextInt(100000);

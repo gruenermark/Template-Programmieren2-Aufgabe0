@@ -3,7 +3,8 @@ package org.htw.prog2.aufgabe0;
 import org.knowm.xchart.XYChart;
 import org.knowm.xchart.SwingWrapper;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MyProject {
 
@@ -22,7 +23,22 @@ public class MyProject {
      */
     public static double[] calculateBabylonianRoot(double value, double initial, double maxerror) {
         // TODO: Implementieren.
-        return new double[] {initial};
+        int n = 1;
+        double root;
+        List<Double> liste = new ArrayList<>();
+        do {
+            root = 0.5 * (initial + (value/initial));
+            initial = root;
+            liste.add(root);
+            System.out.println(root);
+            n++;
+
+        } while (n <10);
+        double[] rootArray = new double[liste.size()];
+        for (int i = 0; i < liste.size(); i++) {
+            rootArray[i] = liste.get(i); // Automatisches Unboxing von Integer zu int
+        }
+        return rootArray;
     }
 
     public static void plotData(double[] values) {
@@ -33,5 +49,7 @@ public class MyProject {
 
     public static void main(String[] args) {
         plotData(calculateBabylonianRoot(74821, 5, 0.1));
+        plotData(calculateBabylonianRoot(10,10,0.001));
     }
+
 }

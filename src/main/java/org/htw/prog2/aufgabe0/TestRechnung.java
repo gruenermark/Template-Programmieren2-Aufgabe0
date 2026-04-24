@@ -2,8 +2,8 @@ package org.htw.prog2.aufgabe0;
 
 public class TestRechnung {
     public static void main(String[] args) {
-        double S = 10;
-        double X = 3;
+        double S = 74821;
+        double X = 5;
         double W;
         double maxerror;
         double e;
